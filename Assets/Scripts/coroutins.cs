@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class coroutins : MonoBehaviour
 {
@@ -9,24 +11,28 @@ public class coroutins : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.F)) {
+        if (Input.GetKeyUp(KeyCode.F))
+        {
             StartCoroutine(test1());
         }
-        if (Input.GetKey(KeyCode.O)) {
-            obj.transform.position = new Vector3(obj.transform.position.x+1, obj.transform.position.y, obj.transform.position.z);
+        if (Input.GetKey(KeyCode.O))
+        {
+            obj.transform.position = new Vector3(obj.transform.position.x + 1, obj.transform.position.y, obj.transform.position.z);
         }
     }
 
-    IEnumerator test1() {
+    IEnumerator test1()
+    {
         int y = 5;
-        for (int i = 0; i < 2400; i+=3) {
+        for (int i = 0; i < 2400; i += 3)
+        {
             yield return new WaitForSeconds(0);
             int x = i % 60;
-            Instantiate(obj, new Vector3(x,y,-3), Quaternion.identity);
+            Instantiate(obj, new Vector3(x, y, -3), Quaternion.identity);
             Instantiate(obj, new Vector3(0, y, x), Quaternion.identity);
             if (i % 60 == 0)
             {
-                y+=3;
+                y += 3;
             }
         }
     }
